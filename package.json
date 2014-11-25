@@ -20,6 +20,7 @@
     "bcrypt-nodejs" : "*",
     "connect-flash" : "*",
     "passport-google-oauth": "0.1.5",
-    "locus":""
+    "locus":"",
+    "youtube-node":""
   }
 }

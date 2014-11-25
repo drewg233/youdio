@@ -1,4 +1,5 @@
 var usernames = {};
+var playlist = [];
 var rooms = [];
 
 io.sockets.on('connection', function (socket) {
@@ -8,6 +9,10 @@ io.sockets.on('connection', function (socket) {
 			socket.room = data.chatHash;
 			socket.join(socket.room);
 			socket.emit('updatechat', 'SERVER', 'you have connected to ' + socket.room);
+			if (playlist[socket.room] === undefined) {
+			} else {
+				socket.emit('starting playlist', playlist[socket.room]);
+			}
 			socket.broadcast.to(socket.room).emit('updatechat', 'SERVER', socket.username + ' has connected to this room');
 			if (usernames[socket.room] === undefined) {
 				usernames[socket.room] = [];
@@ -23,6 +28,30 @@ io.sockets.on('connection', function (socket) {
 			socket.join(socket.room);
 			updateUsers(socket.room);
 		}
+	});
+
+	socket.on('search video', function(data){
+		youtube.search(data, 10, function(resultData) {
+			socket.emit('update results', resultData);
+		});
+	});
+
+	socket.on('deletefirst video', function(){
+		playlist[socket.room].shift();
+		console.log("HERES THE PLAYLIST: " + playlist[socket.room])
+	});
+
+	socket.on('pause video', function(data){
+		console.log("video time: "+data);
+	});
+
+	socket.on('add video', function(videoTitle, videoID){
+		if (playlist[socket.room] === undefined) {
+			playlist[socket.room] = [];
+		}
+		playlist[socket.room].push(videoID);
+		console.log("HERES THE PLAYLIST: " + playlist[socket.room])
+		io.sockets.in(socket.room).emit('updateplaylist', videoTitle, videoID, playlist[socket.room]);
 	});
 	
 	socket.on('sendchat', function (data) {

@@ -49,16 +49,6 @@
           </a>
         </li>
       </ul>
-      <form class="navbar-form navbar-left input-s-lg m-t m-l-n-xs hidden-xs" role="search">
-        <div class="form-group">
-          <div class="input-group">
-            <span class="input-group-btn">
-              <button type="submit" class="btn btn-sm bg-white btn-icon rounded"><i class="fa fa-search"></i></button>
-            </span>
-            <input type="text" class="form-control input-sm no-border rounded" placeholder="Search songs, albums...">
-          </div>
-        </div>
-      </form>
       <div class="navbar-right ">
         <ul class="nav navbar-nav m-n hidden-xs nav-user user">
           <li class="hidden-xs">
@@ -531,28 +521,24 @@
               </section>
 
 
-
               <aside class="col-sm-5 no-padder" id="sidebar">
                 <section class="vbox animated fadeInUp">
                   <section class="scrollable">
                     <div class="m-t-n-xxs item pos-rlt">
-                      <div class="top text-right">
-                        <span class="musicbar animate bg-success bg-empty inline m-r-lg m-t" style="width:25px;height:30px">
-                          <span class="bar1 a3 lter"></span>
-                          <span class="bar2 a5 lt"></span>
-                          <span class="bar3 a1 bg"></span>
-                          <span class="bar4 a4 dk"></span>
-                          <span class="bar5 a2 dker"></span>
-                        </span>
+                      <div id="currentVideo">
+<!--                       <video height="300" width="100%" controls>
+                        <source src="http://www.youtube.com/v/dak1n0GZTRg?version=3&enablejsapi=1"/>
+                      </video> -->
+
+                    <div id="video"></div>
+
                       </div>
-                      <div class="bottom gd bg-info wrapper-lg">
-                        <span class="pull-right text-sm">101,400 <br>Followers</span>
-                        <span class="h2 font-thin">Soph Ashe</span>
-                      </div>
-                      <img class="img-full" src="img/m43.jpg" alt="...">
                     </div>
-                    <ul class="list-group list-group-lg no-radius no-border no-bg m-t-n-xxs m-b-none auto">
-                      <li class="list-group-item">
+                    <ul class="list-group list-group-lg no-radius no-border no-bg m-t-n-xxs m-b-none auto" id="playlist">
+
+                    <!-- List Playlist here -->
+
+<!--                       <li class="list-group-item">
                         <div class="pull-right m-l">
                           <a href="#" class="m-r-sm"><i class="icon-cloud-download"></i></a>
                           <a href="#" class="m-r-sm"><i class="icon-plus"></i></a>
@@ -566,197 +552,55 @@
                           <span>E.T.M</span>
                           <span class="text-muted"> -- 04:35</span>
                         </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="pull-right m-l">
-                          <a href="#" class="m-r-sm"><i class="icon-cloud-download"></i></a>
-                          <a href="#"><i class="icon-plus"></i></a>
-                        </div>
-                        <a href="#" class="jp-play-me m-r-sm pull-left">
-                          <i class="icon-control-play text"></i>
-                          <i class="icon-control-pause text-active"></i>
-                        </a>
-                        <div class="clear text-ellipsis">
-                          <span>Vestibulum id ligula porta</span>
-                          <span class="text-muted"> -- 04:15</span>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="pull-right m-l">
-                          <a href="#" class="m-r-sm"><i class="icon-cloud-download"></i></a>
-                          <a href="#"><i class="icon-plus"></i></a>
-                        </div>
-                        <a href="#" class="jp-play-me m-r-sm pull-left">
-                          <i class="icon-control-play text"></i>
-                          <i class="icon-control-pause text-active"></i>
-                        </a>
-                        <div class="clear text-ellipsis">
-                          <span>Praesent commodo cursus magna</span>
-                          <span class="text-muted"> -- 02:25</span>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="pull-right m-l">
-                          <a href="#" class="m-r-sm"><i class="icon-cloud-download"></i></a>
-                          <a href="#"><i class="icon-plus"></i></a>
-                        </div>
-                        <a href="#" class="jp-play-me m-r-sm pull-left">
-                          <i class="icon-control-play text"></i>
-                          <i class="icon-control-pause text-active"></i>
-                        </a>
-                        <div class="clear text-ellipsis">
-                          <span>Curabitur blandit tempus</span>
-                          <span class="text-muted"> -- 05:00</span>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="pull-right m-l">
-                          <a href="#" class="m-r-sm"><i class="icon-cloud-download"></i></a>
-                          <a href="#"><i class="icon-plus"></i></a>
-                        </div>
-                        <a href="#" class="jp-play-me m-r-sm pull-left">
-                          <i class="icon-control-play text"></i>
-                          <i class="icon-control-pause text-active"></i>
-                        </a>
-                        <div class="clear text-ellipsis">
-                          <span>Faucibus dolor auctor</span>
-                          <span class="text-muted"> -- 03:50</span>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="pull-right m-l">
-                          <a href="#" class="m-r-sm"><i class="icon-cloud-download"></i></a>
-                          <a href="#"><i class="icon-plus"></i></a>
-                        </div>
-                        <a href="#" class="jp-play-me m-r-sm pull-left">
-                          <i class="icon-control-play text"></i>
-                          <i class="icon-control-pause text-active"></i>
-                        </a>
-                        <div class="clear text-ellipsis">
-                          <span>Get lacinia odio sem nec elit cibus dolor auctor sed odio dui mollis ornare</span>
-                          <span class="text-muted"> -- 04:05</span>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="pull-right m-l">
-                          <a href="#" class="m-r-sm"><i class="icon-cloud-download"></i></a>
-                          <a href="#"><i class="icon-plus"></i></a>
-                        </div>
-                        <a href="#" class="jp-play-me m-r-sm pull-left">
-                          <i class="icon-control-play text"></i>
-                          <i class="icon-control-pause text-active"></i>
-                        </a>
-                        <div class="clear text-ellipsis">
-                          <span>Faucibus dolor auctor</span>
-                          <span class="text-muted"> -- 02:55</span>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="pull-right m-l">
-                          <a href="#" class="m-r-sm"><i class="icon-cloud-download"></i></a>
-                          <a href="#"><i class="icon-plus"></i></a>
-                        </div>
-                        <a href="#" class="jp-play-me m-r-sm pull-left">
-                          <i class="icon-control-play text"></i>
-                          <i class="icon-control-pause text-active"></i>
-                        </a>
-                        <div class="clear text-ellipsis">
-                          <span>Donec sed odio dui</span>
-                          <span class="text-muted"> -- 04:35</span>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="pull-right m-l">
-                          <a href="#" class="m-r-sm"><i class="icon-cloud-download"></i></a>
-                          <a href="#"><i class="icon-plus"></i></a>
-                        </div>
-                        <a href="#" class="jp-play-me m-r-sm pull-left">
-                          <i class="icon-control-play text"></i>
-                          <i class="icon-control-pause text-active"></i>
-                        </a>
-                        <div class="clear text-ellipsis">
-                          <span>Urna mollis ornare vel eu leo</span>
-                          <span class="text-muted"> -- 05:10</span>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        <div class="pull-right m-l">
-                          <a href="#" class="m-r-sm"><i class="icon-cloud-download"></i></a>
-                          <a href="#"><i class="icon-plus"></i></a>
-                        </div>
-                        <a href="#" class="jp-play-me m-r-sm pull-left">
-                          <i class="icon-control-play text"></i>
-                          <i class="icon-control-pause text-active"></i>
-                        </a>
-                        <div class="clear text-ellipsis">
-                          <span>Vivamus sagittis lacus vel augue</span>
-                          <span class="text-muted"> -- 02:35</span>
-                        </div>
-                      </li>
+                      </li> -->
+                      
                     </ul>
                   </section>
                 </section>
               </aside>
               <!-- / side content -->
+              <section class="col-sm-3 no-padder bg">
+                                <form class="navbar-form navbar-left input-m-lg m-t m-l-n-xs hidden-xs" role="search" id="searchvideoform">
+                                        <div class="form-group">
+                                          <div class="input-group">
+                                            <span class="input-group-btn">
+                                              <button type="submit" class="btn btn-sm bg-white btn-icon rounded"><i class="fa fa-search"></i></button>
+                                            </span>
+                                            <input type="text" id="searchVal" class="form-control input-sm no-border rounded" placeholder="Search songs, albums...">
+                                          </div>
+                                        </div>
+                                      </form>
 
-              <section class="col-sm-3 no-padder lt">
-                <section class="vbox">
-                  <section class="scrollable hover">
-                    <div class="m-t-n-xxs">
-                      <div class="item pos-rlt">
-                        <a href="#" class="item-overlay active opacity wrapper-md font-xs">
-                          <span class="block h3 font-bold text-info">Find</span>
-                          <span class="text-muted">Search the music you like</span>
-                          <span class="bottom wrapper-md block">- <i class="icon-arrow-right i-lg pull-right"></i></span>
-                        </a>
-                        <a href="#">
-                          <img class="img-full" src="img/m40.jpg" alt="...">
-                        </a>
-                      </div>
-                      <div class="item pos-rlt">
-                        <a href="#" class="item-overlay active opacity wrapper-md font-xs text-right">
-                          <span class="block h3 font-bold text-warning text-u-c">Listen</span>
-                          <span class="text-muted">Find the peace in your heart</span>
-                          <span class="bottom wrapper-md block"><i class="icon-arrow-right i-lg pull-left"></i> -</span>
-                        </a>
-                        <a href="#">
-                          <img class="img-full" src="img/m41.jpg" alt="...">
-                        </a>
-                      </div>
-                      <div class="item pos-rlt">
-                        <a href="#" class="item-overlay active opacity wrapper-md font-xs">
-                          <span class="block h3 font-bold text-success text-u-c">Share</span>
-                          <span class="text-muted">Share the good songs with your loves</span>
-                          <span class="bottom wrapper-md block">- <i class="icon-arrow-right i-lg pull-right"></i></span>
-                        </a>
-                        <a href="#">
-                          <img class="img-full" src="img/m42.jpg" alt="...">
-                        </a>
-                      </div>
-                      <div class="item pos-rlt">
-                        <a href="#" class="item-overlay active opacity wrapper-md font-xs text-right">
-                          <span class="block h3 font-bold text-white text-u-c">2014</span>
-                          <span class="text-muted">Find, Listen & Share</span>
-                          <span class="bottom wrapper-md block"><i class="icon-arrow-right i-lg pull-left"></i> -</span>
-                        </a>
-                        <a href="#">
-                          <img class="img-full" src="img/m44.jpg" alt="...">
-                        </a>
-                      </div>
-                      <div class="item pos-rlt">
-                        <a href="#" class="item-overlay active opacity wrapper-md font-xs">
-                          <span class="block h3 font-bold text-danger-lter text-u-c">Top10</span>
-                          <span class="text-muted">Selected songs</span>
-                          <span class="bottom wrapper-md block">- <i class="icon-arrow-right i-lg pull-right"></i></span>
-                        </a>
-                        <a href="#">
-                          <img class="img-full" src="img/m45.jpg" alt="...">
-                        </a>
-                      </div>
-                    </div>
-                  </section>
-                </section>
-              </section>
+                              <section class="vbox">
+
+                                <section class="scrollable hover">
+                                  <ul class="list-group list-group-lg no-bg auto m-b-none m-t-n-xxs" id="searchResultList">
+
+                                  <!-- List search results here -->
+
+
+
+<!--                                    <li class="list-group-item clearfix">
+                                     <a href="#" class="jp-play-me pull-right m-t-sm m-l text-md">
+                                       <i class="icon-control-play text"></i>
+                                       <i class="icon-control-pause text-active"></i>
+                                     </a>
+                                     <a href="#" class="pull-left thumb-sm m-r">
+                                       <img src="images/m0.jpg" alt="...">
+                                     </a>
+                                     <a class="clear" href="#">
+                                       <span class="block text-ellipsis">Little Town</span>
+                                       <small class="text-muted">by Soph Ashe</small>
+                                     </a>
+                                   </li> -->
+
+                                  </ul>
+                                </section>
+                              </section>
+                            </section>
+
+
+
             </section>
           </section>
           <footer class="footer bg-success dker">
@@ -771,8 +615,8 @@
                           <div class="jp-controls">
                             <div><a class="jp-previous"><i class="icon-control-rewind i-lg"></i></a></div>
                             <div>
-                              <a class="jp-play"><i class="icon-control-play i-2x"></i></a>
-                              <a class="jp-pause hid"><i class="icon-control-pause i-2x"></i></a>
+                              <a id="bottomPlayButton" class="jp-play"><i class="icon-control-play i-2x"></i></a>
+                              <a id="bottomPauseButton" class="jp-pause hid"><i class="icon-control-pause i-2x"></i></a>
                             </div>
                             <div><a class="jp-next"><i class="icon-control-forward i-lg"></i></a></div>
                             <div class="hide"><a class="jp-stop"><i class="fa fa-stop"></i></a></div>
@@ -851,7 +695,6 @@
 
 <script>
   var socket = io.connect('http://{{ globalData.server }}');
-  
   var datanew = {
     username: '{{ globalData.user }}',
     chatHash: '{{ chat_room }}',
@@ -867,6 +710,81 @@
   if (datanew.profile_image != "") {
     $('.thumb-sm img').attr("src", datanew.profile_image);
   }
+
+  var video = $("#currentvideovid");
+
+  var tag = document.createElement('script');
+  tag.src = "//www.youtube.com/player_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  var player;
+  var localplaylist = [];
+  function onYouTubePlayerAPIReady() 
+  {
+    player = new YT.Player('video', {
+      height: '300',
+      width: '100%',
+      playerVars: {
+        autoplay: 0,
+        controls: 0,
+        showinfo: 0
+      }, 
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  function onPlayerReady(event) {
+    if (localplaylist.length >= 1) {
+
+    } else {
+      $("#video").hide();
+    }
+
+    // bind events
+    var playButton = document.getElementById("bottomPlayButton");
+    playButton.addEventListener("click", function() {
+      player.playVideo();
+    });
+    
+    var pauseButton = document.getElementById("bottomPauseButton");
+    pauseButton.addEventListener("click", function() {
+      player.pauseVideo();
+    });
+  }
+
+  function onPlayerStateChange(event) {  
+    // when video ends
+    if(event.data === 0) {   
+      if (localplaylist.length >= 1) {
+        player.loadVideoById(localplaylist[0]);
+        removeFirstFromPlaylist();
+      }
+    }
+    // playing
+    if(event.data === 1) { 
+      socket.emit('play video');
+      $("#bottomPlayButton").addClass( "hid" );
+      $("#bottomPauseButton").removeClass( "hid" );  
+    }
+    // paused
+    if(event.data === 2) {
+      socket.emit('pause video', player.getCurrentTime());
+      $("#bottomPlayButton").removeClass( "hid" );
+      $("#bottomPauseButton").addClass( "hid" );
+    }
+  }
+
+  function removeFirstFromPlaylist(){
+    localplaylist.shift();
+    $('#playlist li').first().remove();
+    socket.emit('deletefirst video');
+  }
+
+
+    // socket.emit("pause video", video.currentTime);
 
 
 
@@ -889,6 +807,49 @@
       $('#userslist').html(string);
     }
   });
+
+  socket.on('starting playlist', function(playlist) {
+    alert(playlist);
+  });
+
+  socket.on('updateplaylist', function (videoTitle, videoId, playlist) {
+    $('#playlist').append("<li class='list-group-item'><div class='pull-right m-l'><a href='#' class='m-r-sm'><i class='icon-cloud-download'></i></a><a href='#' class='m-r-sm'><i class='icon-plus'></i></a><a href='#'><i class='icon-close'></i></a></div><a href='#' class='jp-play-me m-r-sm pull-left'><i class='icon-control-play text'></i><i class='icon-control-pause text-active'></i></a><div class='clear text-ellipsis'><span>"+ videoTitle +"</span><span class='text-muted'> -- 04:35</span></div></li>");
+      localplaylist = playlist;
+      if (localplaylist.length == 1) {
+        player.loadVideoById(localplaylist[0])
+      }
+      if ($("#video").is(":visible") == false) {
+        $("#video").show();
+      }
+  });
+
+
+  $('#searchvideoform').submit(function(e){
+    e.preventDefault();
+    socket.emit('search video', $('#searchVal').val());
+  });
+
+  socket.on('update results', function (data) {
+    $('#searchResultList').empty();
+    console.log(data);
+    for (i = 0; i < data.items.length; i++) { 
+      title = data.items[i].snippet.title;
+      videoid = '"'+data.items[i].id.videoId+'"';
+        $('#searchResultList').append("<li class='list-group-item clearfix'><a href='javascript:addVideoItem("+'"'+title.replace(/(\"|\')/g, '\\$1')+'"'+","+videoid+");' class='jp-play-me pull-right m-t-sm m-l text-md'><i class='icon-control-play text'></i><i class='icon-control-pause text-active'></i></a><a href='javascript:addVideoItem("+'"'+title.replace(/(\"|\')/g, '\\$1')+'"'+","+videoid+");' class='pull-left thumb-sm m-r' style='width:80px;'><img src='"+data.items[i].snippet.thumbnails.high.url+"'style='width: 80px;height: 55px;'></a><a class='clear' href='#'><span class='block text-ellipsis'>"+data.items[i].snippet.title+"</span><small class='text-muted'>by Soph Ashe</small></a></li>");
+    }
+  });
+
+  var pauseTheVideo = function(){
+    player.stopVideo();
+  }
+
+  // "<a href='javascript:addVideoItem("+'"'+title.replace(/(\"|\')/g, '\\$1')+'"'+","+videoid+");'><h1>"+data.items[i].snippet.title+"</h1>"+"<img src='"+data.items[i].snippet.thumbnails.high.url+"'></a>"
+
+  var addVideoItem = function(videoTitle, videoId){
+    // console.log(videoTitle+" "+videoId);
+    socket.emit('add video', videoTitle, videoId);
+  };
+
 
   function forceLogin() {
       // $('#signinModal').foundation('reveal', 'open');

@@ -1,3 +1,4 @@
+var youtube = require('youtube-node');
 var app = require('express')();
 var swig = require('swig');
 var people;
@@ -23,6 +24,8 @@ initPassport(passport);
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://drewg23:jesusman23@ds055690.mongolab.com:55690/youdio');
 // mongoose.connect('mongodb://'+server_config.serverip+'/passport');
+
+youtube.setKey('AIzaSyBSpKkEoeOvoIKaYUkhcmz-uhDSj9yKHU8');
 
 swig.setDefaults({ cache: false });
 app.engine('html', swig.renderFile);
