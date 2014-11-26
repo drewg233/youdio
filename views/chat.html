@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/simple-line-icons.css" type="text/css" />
   <link rel="stylesheet" href="css/font.css" type="text/css" />
   <link rel="stylesheet" href="css/app.css" type="text/css" />  
+  <link rel="stylesheet" href="css/main.css" type="text/css" />  
     <!--[if lt IE 9]>
     <script src="js/ie/html5shiv.js"></script>
     <script src="js/ie/respond.min.js"></script>
@@ -43,6 +44,7 @@
                     <span class="help-block"></span>
                 </div>
                 <button type="submit" class="btn btn-success btn-block">Login</button>
+                <a href="/auth/google"><button type="submit" class="btn btn-danger btn-block">Login with Google</button></a>
                 <button type="submit" class="btn btn-primary btn-block">Signup</button>
             </form>
           </div>
@@ -519,20 +521,6 @@
           </section>
         </aside>
         <!-- /.aside -->
-        <style type="text/css">
-          .chat-list {
-            position: absolute;
-            overflow: hidden;
-          }
-          #chat-footer {
-            position: absolute;
-            bottom: 0px;
-          }
-          .m-b-none {
-            word-wrap: break-word;
-          }
-        </style>
-
         <section id="content">
           <section class="vbox">
           <section class="w-f-md">
@@ -716,236 +704,62 @@
     </section>    
   </section>
 
-  <script src="js/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="js/bootstrap.js"></script>
-  <!-- App -->
-  <script src="js/app.js"></script>  
-  <script src="js/slimscroll/jquery.slimscroll.min.js"></script>
-  <script src="js/app.plugin.js"></script>
-  <script type="text/javascript" src="js/jPlayer/jquery.jplayer.min.js"></script>
-  <script type="text/javascript" src="js/jPlayer/add-on/jplayer.playlist.min.js"></script>
-
-  <script src="/socket.io/socket.io.js"></script>
-  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
-  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-<script>
-  var socket = io.connect('http://{{ globalData.server }}');
-  var datanew = {
-    username: '{{ globalData.user }}',
-    chatHash: '{{ chat_room }}',
-    profile_image: '{{ globalData.userimage }}'
-  };
-
-  socket.emit('adduser', datanew);
-    if (datanew.username != ""){
-    $('#mainusername').text(datanew.username);
-  }
-
-  if (datanew.profile_image != "") {
-    $('.thumb-sm img').attr("src", datanew.profile_image);
-  }
-
-  var video = $("#currentvideovid");
-
-  var tag = document.createElement('script');
-  tag.src = "//www.youtube.com/player_api";
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-  var player;
-  var localplaylist = [];
-  
-  function onYouTubePlayerAPIReady() 
-  {
-    player = new YT.Player('video', {
-      height: '300',
-      width: '100%',
-      playerVars: {
-        autoplay: 0,
-        controls: 0,
-        showinfo: 0
-      }, 
-      events: {
-        'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange
-      }
-    });
-  }
-
-  function onPlayerReady(event) {
-    if (localplaylist.length >= 1) {
-
-    } else {
-      $("#video").hide();
-    }
-
-    // bind events
-    var playButton = document.getElementById("bottomPlayButton");
-    playButton.addEventListener("click", function() {
-      player.playVideo();
-    });
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>  
+    <script type="text/javascript" src="js/slimscroll/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="js/app.plugin.js"></script>
+    <script type="text/javascript" src="js/jPlayer/jquery.jplayer.min.js"></script>
+    <script type="text/javascript" src="js/jPlayer/add-on/jplayer.playlist.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     
-    var pauseButton = document.getElementById("bottomPauseButton");
-    pauseButton.addEventListener("click", function() {
-      player.pauseVideo();
-    });
-  }
-
-  function onPlayerStateChange(event) {  
-    // when video ends
-    if(event.data === 0) {   
-      if (localplaylist.length >= 1) {
-        player.loadVideoById(localplaylist[0]);
-        removeFirstFromPlaylist();
-      }
-    }
-    // playing
-    if(event.data === 1) { 
-      socket.emit('play videoserver');
-      $("#bottomPlayButton").addClass( "hid" );
-      $("#bottomPauseButton").removeClass( "hid" );  
-    }
-    // paused
-    if(event.data === 2) {
-      socket.emit('pause videoserver', player.getCurrentTime());
-      $("#bottomPlayButton").removeClass( "hid" );
-      $("#bottomPauseButton").addClass( "hid" );
-    }
-  }
-
-  function removeFirstFromPlaylist(){
-    socket.emit('deletefirst videoserver');
-  }
-
-  socket.on('deletefirst video', function(){
-    localplaylist.shift();
-    $('#playlist li').first().remove();
-    updatePlaylistItemOne();
-    if (localplaylist.length == 0) {
-      $("#video").hide();
-    } else {
-      player.loadVideoById(localplaylist[0]) // For now. Need to sync videos better.
-    }
-  });
-
-  var updatePlaylistItemOne = function(){
-    playlistitem = $('#playlist li').first();
-    playlistitem.find(".pull-right").remove();
-    playlistitem.find(".jp-play-me").remove();
-    playlistitem.find("span:first").prepend("Now Playing: ");
-  }
-
-  socket.on('pause video', function (currentVideoTime){
-    player.pauseVideo();
-  });
-
-  socket.on('play video', function(){
-    player.playVideo();
-  });
-
-  socket.on('updatechat', function (username, data) {
-    // $('#messages').append('<li><strong>'+username + ':</strong> ' + data + '</li>');
-    if (datanew.profile_image != ''){
-    $('section.chat-list').prepend('<article id="chat-id-1" class="chat-item left"><a href="#" class="pull-left thumb-sm avatar"><img src="'+ datanew.profile_image +'"></a><section class="chat-body"><div class="panel b-light text-sm m-b-none"><div class="panel-body"><span class="arrow left"></span><p class="m-b-none">'+data+'</p></div></div><small class="text-muted"></section></article>');
-    }else {
-    $('section.chat-list').prepend('<article id="chat-id-1" class="chat-item left"><a href="#" class="pull-left thumb-sm avatar"><img src="img/a2.png"></a><section class="chat-body"><div class="panel b-light text-sm m-b-none"><div class="panel-body"><span class="arrow left"></span><p class="m-b-none">'+data+'</p></div></div><small class="text-muted"></section></article>');
-    }
-  });
-
-  socket.on('updateusers', function (users) {
-    if (users) {
-      var string = '<ul>';
-      for (i = 0; i < users.length; i++) {
-        string += '<li>'+users[i]+'</li>';
-      }
-      string += '</ul>';
-      $('#userslist').html(string);
-    }
-  });
-
-  socket.on('starting playlist', function(playlist) {
-    alert(playlist);
-  });
-
-  socket.on('updateplaylist', function (videoTitle, videoId, playlist) {
-    $('#playlist').append("<li class='list-group-item'><div class='pull-right m-l'><a href='#' class='m-r-sm'><i class='icon-cloud-download'></i></a><a href='#' class='m-r-sm'><i class='icon-plus'></i></a><a href='#'><i class='icon-close'></i></a></div><a href='#' class='jp-play-me m-r-sm pull-left'><i class='icon-control-play text'></i><i class='icon-control-pause text-active'></i></a><div class='clear text-ellipsis'><span>"+ videoTitle +"</span><span class='text-muted'> -- 04:35</span></div></li>");
-      localplaylist = playlist;
-      if (localplaylist.length == 1) {
-        player.loadVideoById(localplaylist[0])
-      }
-      if ($("#video").is(":visible") == false) {
-        updatePlaylistItemOne();
-        $("#video").show();
-      }
-  });
-
-
-  $('#searchvideoform').submit(function(e){
-    e.preventDefault();
-    socket.emit('search video', $('#searchVal').val());
-  });
-
-  socket.on('update results', function (data) {
-    $('#searchResultList').empty();
-    console.log(data);
-    for (i = 0; i < data.items.length; i++) { 
-      title = data.items[i].snippet.title;
-      videoid = '"'+data.items[i].id.videoId+'"';
-        $('#searchResultList').append("<li class='list-group-item clearfix'><a href='javascript:addVideoItem("+'"'+title.replace(/(\"|\')/g, '\\$1')+'"'+","+videoid+");' class='jp-play-me pull-right m-t-sm m-l text-md'><i class='icon-control-play text'></i><i class='icon-control-pause text-active'></i></a><a href='javascript:addVideoItem("+'"'+title.replace(/(\"|\')/g, '\\$1')+'"'+","+videoid+");' class='pull-left thumb-sm m-r' style='width:80px;'><img src='"+data.items[i].snippet.thumbnails.high.url+"'style='width: 80px;height: 55px;'></a><a class='clear' href='#'><span class='block text-ellipsis'>"+data.items[i].snippet.title+"</span><small class='text-muted'>by Soph Ashe</small></a></li>");
-    }
-  });
-
-  var pauseTheVideo = function(){
-    player.stopVideo();
-  }
-
-  var addVideoItem = function(videoTitle, videoId){
-    socket.emit('add video', videoTitle, videoId);
-  };
-
-  function forceLogin() {
-    $('#loginModal').modal('show');
-  }
-</script>
-
-{% if globalData.user %}
-  <script type="text/javascript">
+    <script type="text/javascript">
+        var socket = io.connect('http://{{ globalData.server }}');
+        var datanew = {
+            username: '{{ globalData.user }}',
+            chatHash: '{{ chat_room }}',
+            profile_image: '{{ globalData.userimage }}'
+        };
+    </script>
+  
+    {% if globalData.user %}
+    <script type="text/javascript">
     $(document).ready(function() {
         $('#datasend').click( function() {
-          var message = $('#data').val();
-          $('#data').val('');
-          var data = { message: message, username: '{{ globalData.user }}', room:'{{ chat_room }}' };
-          console.log("Heres the data!:"+ data.message);
-          socket.emit('sendchat', data);
-          $('section.chat-list').prepend('<article id="chat-id-2" class="chat-item right"><a href="#" class="pull-right thumb-sm avatar"><img src="img/a3.png" class="img-circle"></a><section class="chat-body"><div class="panel bg-light text-sm m-b-none"><div class="panel-body"><span class="arrow right"></span><p class="m-b-none">'+data.message+'</div></div><small class="text-muted"></small></section></article>');
+            var message = $('#data').val();
+            $('#data').val('');
+            var data = { message: message, username: '{{ globalData.user }}', room:'{{ chat_room }}' };
+            socket.emit('sendchat', data);
+            $('section.chat-list').prepend('<article id="chat-id-2" class="chat-item right"><a href="#" class="pull-right thumb-sm avatar"><img src="img/a3.png" class="img-circle"></a><section class="chat-body"><div class="panel bg-light text-sm m-b-none"><div class="panel-body"><span class="arrow right"></span><p class="m-b-none">'+data.message+'</div></div><small class="text-muted"></small></section></article>');
+
         });
         $('#data').keypress(function(e) {
-          if(e.which == 13) {
-            $(this).blur();
-            $('#datasend').focus().click();
-            $('#data').focus();
-          }
+            if(e.which == 13) {
+                $(this).blur();
+                $('#datasend').focus().click();
+                $('#data').focus();
+            }
         });
     });
-  </script>
-{% else %}
-  <script type="text/javascript">
-    $(document).ready(function() {
-        $('#datasend').click( function() {
-          forceLogin();
-        });
-        $('#data').keypress(function(e) {
-          if(e.which == 13) {
+    </script>
+    {% else %}
+    <script type="text/javascript">
+        $(document).ready(function() {
             forceLogin();
-          }
+            $('#datasend').click( function() {
+                forceLogin();
+            });
+            $('#data').keypress(function(e) {
+                if(e.which == 13) {
+                    forceLogin();
+                }
+            });
         });
-    });
-  </script>
-{% endif %}
+    </script>
+   {% endif %}
 
-
-
-
+    <script type="text/javascript" src="/js/socket.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
 </body>
 </html>
 

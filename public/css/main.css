@@ -1,0 +1,11 @@
+.chat-list {
+  position: absolute;
+  overflow: hidden;
+}
+#chat-footer {
+  position: absolute;
+  bottom: 0px;
+}
+.m-b-none {
+  word-wrap: break-word;
+}
