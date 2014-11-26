@@ -3,7 +3,7 @@ app.post('/login',
         failureRedirect: '/login',
         failureFlash : true  
     }), function(req, res) {
-        res.redirect(getLastUrl(req));
+        res.redirect(req.headers.referer);
     }
 );
 
