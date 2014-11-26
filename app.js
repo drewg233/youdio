@@ -22,8 +22,8 @@ var initPassport = require('./passport/init');
 initPassport(passport);
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://drewg23:jesusman23@ds055690.mongolab.com:55690/youdio');
-// mongoose.connect('mongodb://'+server_config.serverip+'/passport');
+//mongoose.connect('mongodb://drewg23:jesusman23@ds055690.mongolab.com:55690/youdio');
+mongoose.connect('mongodb://'+server_config.serverip+'/passport');
 
 youtube.setKey('AIzaSyBSpKkEoeOvoIKaYUkhcmz-uhDSj9yKHU8');
 
