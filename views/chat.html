@@ -521,19 +521,17 @@
         <!-- /.aside -->
         <style type="text/css">
           .chat-list {
-            height: 63vh;
+            position: absolute;
+            overflow: hidden;
           }
           #chat-footer {
             position: absolute;
-            bottom: 0;
+            bottom: 0px;
           }
           .m-b-none {
             word-wrap: break-word;
           }
         </style>
-
-
-
 
         <section id="content">
           <section class="vbox">
@@ -541,7 +539,7 @@
             <section class="hbox stretch bg-black dker">
               <!-- side content -->
               <section class="col-sm-4 no-padder bg">
-                <section class="panel panel-default">
+                <section class="panel panel-default" style="height:100%">
                     <header class="panel-heading">Chat</header>
                     <section class="chat-list panel-body">
 
@@ -829,9 +827,9 @@
   socket.on('updatechat', function (username, data) {
     // $('#messages').append('<li><strong>'+username + ':</strong> ' + data + '</li>');
     if (datanew.profile_image != ''){
-    $('section.chat-list').append('<article id="chat-id-1" class="chat-item left"><a href="#" class="pull-left thumb-sm avatar"><img src="'+ datanew.profile_image +'"></a><section class="chat-body"><div class="panel b-light text-sm m-b-none"><div class="panel-body"><span class="arrow left"></span><p class="m-b-none">'+data+'</p></div></div><small class="text-muted"></section></article>');
+    $('section.chat-list').prepend('<article id="chat-id-1" class="chat-item left"><a href="#" class="pull-left thumb-sm avatar"><img src="'+ datanew.profile_image +'"></a><section class="chat-body"><div class="panel b-light text-sm m-b-none"><div class="panel-body"><span class="arrow left"></span><p class="m-b-none">'+data+'</p></div></div><small class="text-muted"></section></article>');
     }else {
-    $('section.chat-list').append('<article id="chat-id-1" class="chat-item left"><a href="#" class="pull-left thumb-sm avatar"><img src="img/a2.png"></a><section class="chat-body"><div class="panel b-light text-sm m-b-none"><div class="panel-body"><span class="arrow left"></span><p class="m-b-none">'+data+'</p></div></div><small class="text-muted"></section></article>');
+    $('section.chat-list').prepend('<article id="chat-id-1" class="chat-item left"><a href="#" class="pull-left thumb-sm avatar"><img src="img/a2.png"></a><section class="chat-body"><div class="panel b-light text-sm m-b-none"><div class="panel-body"><span class="arrow left"></span><p class="m-b-none">'+data+'</p></div></div><small class="text-muted"></section></article>');
     }
   });
 
