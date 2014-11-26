@@ -568,13 +568,8 @@
                 <section class="vbox animated fadeInUp">
                   <section class="scrollable">
                     <div class="m-t-n-xxs item pos-rlt">
-                      <div id="currentVideo">
-<!--                       <video height="300" width="100%" controls>
-                        <source src="http://www.youtube.com/v/dak1n0GZTRg?version=3&enablejsapi=1"/>
-                      </video> -->
-
-                    <div id="video"></div>
-
+                      <div id="currentVideo" style="height: 300px;">
+                        <div id="video"></div>
                       </div>
                     </div>
                     <ul class="list-group list-group-lg no-radius no-border no-bg m-t-n-xxs m-b-none auto" id="playlist">
@@ -819,9 +814,25 @@
   }
 
   function removeFirstFromPlaylist(){
+    socket.emit('deletefirst videoserver');
+  }
+
+  socket.on('deletefirst video', function(){
     localplaylist.shift();
     $('#playlist li').first().remove();
-    socket.emit('deletefirst video');
+    updatePlaylistItemOne();
+    if (localplaylist.length == 0) {
+      $("#video").hide();
+    } else {
+      player.loadVideoById(localplaylist[0]) // For now. Need to sync videos better.
+    }
+  });
+
+  var updatePlaylistItemOne = function(){
+    playlistitem = $('#playlist li').first();
+    playlistitem.find(".pull-right").remove();
+    playlistitem.find(".jp-play-me").remove();
+    playlistitem.find("span:first").prepend("Now Playing: ");
   }
 
   socket.on('pause video', function (currentVideoTime){
@@ -863,6 +874,7 @@
         player.loadVideoById(localplaylist[0])
       }
       if ($("#video").is(":visible") == false) {
+        updatePlaylistItemOne();
         $("#video").show();
       }
   });

@@ -36,9 +36,10 @@ io.sockets.on('connection', function (socket) {
 		});
 	});
 
-	socket.on('deletefirst video', function(){
+	socket.on('deletefirst videoserver', function(){
 		playlist[socket.room].shift();
 		console.log("HERES THE PLAYLIST: " + playlist[socket.room])
+		io.sockets.in(socket.room).emit('deletefirst video');
 	});
 
 	socket.on('play videoserver', function(){
