@@ -41,8 +41,13 @@ io.sockets.on('connection', function (socket) {
 		console.log("HERES THE PLAYLIST: " + playlist[socket.room])
 	});
 
-	socket.on('pause video', function(data){
-		console.log("video time: "+data);
+	socket.on('play videoserver', function(){
+		io.sockets.in(socket.room).emit('play video');
+	});
+
+	socket.on('pause videoserver', function(currentVideoTime){
+		console.log("video time: " + currentVideoTime);
+		io.sockets.in(socket.room).emit('pause video', currentVideoTime);
 	});
 
 	socket.on('add video', function(videoTitle, videoID){

@@ -806,13 +806,13 @@
     }
     // playing
     if(event.data === 1) { 
-      socket.emit('play video');
+      socket.emit('play videoserver');
       $("#bottomPlayButton").addClass( "hid" );
       $("#bottomPauseButton").removeClass( "hid" );  
     }
     // paused
     if(event.data === 2) {
-      socket.emit('pause video', player.getCurrentTime());
+      socket.emit('pause videoserver', player.getCurrentTime());
       $("#bottomPlayButton").removeClass( "hid" );
       $("#bottomPauseButton").addClass( "hid" );
     }
@@ -823,6 +823,14 @@
     $('#playlist li').first().remove();
     socket.emit('deletefirst video');
   }
+
+  socket.on('pause video', function (currentVideoTime){
+    player.pauseVideo();
+  });
+
+  socket.on('play video', function(){
+    player.playVideo();
+  });
 
   socket.on('updatechat', function (username, data) {
     // $('#messages').append('<li><strong>'+username + ':</strong> ' + data + '</li>');
