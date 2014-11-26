@@ -61,7 +61,7 @@ io.sockets.on('connection', function (socket) {
 	});
 	
 	socket.on('sendchat', function (data) {
-		io.sockets.in(data.room).emit('updatechat', data.username, data.message);
+		socket.broadcast.to(data.room).emit('updatechat', data.username, data.message);
 	});
 	
 	socket.on('disconnect', function(){

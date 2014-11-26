@@ -908,7 +908,6 @@
   }
 </script>
 
-
 {% if globalData.user %}
   <script type="text/javascript">
     $(document).ready(function() {
@@ -918,6 +917,7 @@
           var data = { message: message, username: '{{ globalData.user }}', room:'{{ chat_room }}' };
           console.log("Heres the data!:"+ data.message);
           socket.emit('sendchat', data);
+          $('section.chat-list').prepend('<article id="chat-id-2" class="chat-item right"><a href="#" class="pull-right thumb-sm avatar"><img src="img/a3.png" class="img-circle"></a><section class="chat-body"><div class="panel bg-light text-sm m-b-none"><div class="panel-body"><span class="arrow right"></span><p class="m-b-none">'+data.message+'</div></div><small class="text-muted"></small></section></article>');
         });
         $('#data').keypress(function(e) {
           if(e.which == 13) {
