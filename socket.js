@@ -8,12 +8,12 @@ io.sockets.on('connection', function (socket) {
 			socket.username = data.username;
 			socket.room = data.chatHash;
 			socket.join(socket.room);
-			socket.emit('updatechat', 'SERVER', 'you have connected to ' + socket.room);
+			socket.emit('updatechat', {message: "You have connected to " + socket.room});
 			if (playlist[socket.room] === undefined) {
 			} else {
 				socket.emit('starting playlist', playlist[socket.room]);
 			}
-			socket.broadcast.to(socket.room).emit('updatechat', 'SERVER', socket.username + ' has connected to this room');
+			socket.broadcast.to(socket.room).emit('updatechat', {message: socket.username + ' has connected to this room'});
 			if (usernames[socket.room] === undefined) {
 				usernames[socket.room] = [];
 				usernames[socket.room].push(socket.username);		
@@ -61,13 +61,14 @@ io.sockets.on('connection', function (socket) {
 	});
 	
 	socket.on('sendchat', function (data) {
-		socket.broadcast.to(data.room).emit('updatechat', data.username, data.message);
+		console.log(data);
+		socket.broadcast.to(data.room).emit('updatechat', data);
 	});
 	
 	socket.on('disconnect', function(){
 		if (socket.username != undefined) {
 			io.sockets.emit('updateusers', usernames);
-			io.sockets.in(socket.room).emit('updatechat', 'SERVER', socket.username + ' has disconnected');
+			io.sockets.in(socket.room).emit('updatechat', {message: socket.username + ' has disconnected'});
 			socket.leave(socket.room);		
 			if (socket.username !== undefined) {
 				var user_index = usernames[socket.room].indexOf(socket.username);

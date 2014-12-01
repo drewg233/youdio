@@ -312,7 +312,7 @@
                               <i class="fa fa-angle-down text-active"></i>
                             </span>                            
                             <i class="fa fa-angle-right text-xs"></i>
-
+ 
                             <span>Table</span>
                           </a>
                           <ul class="nav dker">
@@ -716,9 +716,9 @@
     <script type="text/javascript">
         var socket = io.connect('http://{{ globalData.server }}');
         var datanew = {
-            username: '{{ globalData.user }}',
-            chatHash: '{{ chat_room }}',
-            profile_image: '{{ globalData.userimage }}'
+          username: '{{ globalData.user }}',
+          chatHash: '{{ chat_room }}',
+          profile_image: '{{ globalData.userimage }}'
         };
     </script>
   
@@ -726,19 +726,21 @@
     <script type="text/javascript">
     $(document).ready(function() {
         $('#datasend').click( function() {
-            var message = $('#data').val();
-            $('#data').val('');
-            var data = { message: message, username: '{{ globalData.user }}', room:'{{ chat_room }}' };
+          var message = $('#data').val();
+          $('#data').val('');
+          var data = { message: message, username: '{{ globalData.user }}', room:'{{ chat_room }}', profile_image: '{{ globalData.userimage }}' };
+          if (message.length != 0) {
             socket.emit('sendchat', data);
-            $('section.chat-list').prepend('<article id="chat-id-2" class="chat-item right"><a href="#" class="pull-right thumb-sm avatar"><img src="img/a3.png" class="img-circle"></a><section class="chat-body"><div class="panel bg-light text-sm m-b-none"><div class="panel-body"><span class="arrow right"></span><p class="m-b-none">'+data.message+'</div></div><small class="text-muted"></small></section></article>');
-
+            $('section.chat-list').append('<article id="chat-id-2" class="chat-item right"><a href="#" class="pull-right thumb-sm avatar"><img src="img/a3.png" class="img-circle"></a><section class="chat-body"><div class="panel bg-light text-sm m-b-none"><div class="panel-body"><span class="arrow right"></span><p class="m-b-none">'+data.message+'</div></div><small class="text-muted"></small></section></article>');
+            $('section.chat-list').animate({scrollTop: $('section.chat-list')[0].scrollHeight}, 400);
+          }
         });
         $('#data').keypress(function(e) {
-            if(e.which == 13) {
-                $(this).blur();
-                $('#datasend').focus().click();
-                $('#data').focus();
-            }
+          if(e.which == 13) {
+            $(this).blur();
+            $('#datasend').focus().click();
+            $('#data').focus();
+          }
         });
     });
     </script>
@@ -747,12 +749,12 @@
         $(document).ready(function() {
             forceLogin();
             $('#datasend').click( function() {
-                forceLogin();
+              forceLogin();
             });
             $('#data').keypress(function(e) {
-                if(e.which == 13) {
-                    forceLogin();
-                }
+              if(e.which == 13) {
+                forceLogin();
+              }
             });
         });
     </script>

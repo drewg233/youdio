@@ -7,7 +7,7 @@
     $('.thumb-sm img').attr("src", datanew.profile_image);
   }
 
-  var video = $("#currentvideovid");
+   var video = $("#currentvideovid");
 
   var tag = document.createElement('script');
   tag.src = "//www.youtube.com/player_api";

@@ -1,7 +1,9 @@
 .chat-list {
   position: absolute;
   width: 100%;
-  overflow: hidden;
+  height: 81%;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 #chat-footer {
   position: absolute;
