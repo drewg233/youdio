@@ -758,7 +758,17 @@
             });
         });
     </script>
-   {% endif %}
+    {% endif %}
+    <script src="http://connect.soundcloud.com/sdk.js"></script>
+    <script>
+      SC.initialize({
+        client_id: '974a43ce2be532ce9a7512f191a87fee'
+      });
+      // find all sounds of buskers licensed under 'creative commons share alike'
+      SC.get('/tracks', { q: 'buskers', license: 'cc-by-sa' }, function(tracks) {
+        console.log(tracks);
+      });
+    </script>
 
     <script type="text/javascript" src="/js/socket.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
