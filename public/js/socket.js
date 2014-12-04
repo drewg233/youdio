@@ -74,6 +74,8 @@ socket.on('updatechat', function (data) {
     $('section.chat-list').append('<article id="chat-id-1" class="chat-item left"><a href="#" class="pull-left thumb-sm avatar"><img src="img/a2.png"></a><section class="chat-body"><div class="panel b-light text-sm m-b-none"><div class="panel-body"><span class="arrow left"></span><p class="m-b-none">'+data.message+'</p></div></div><small class="text-muted"></section></article>');
     $('section.chat-list').animate({scrollTop: $('section.chat-list')[0].scrollHeight}, 400);
   }
+  var audio = new Audio('sounds/chime.mp3');
+  audio.play();
 });
 
 socket.on('updateusers', function (users) {
