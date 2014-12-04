@@ -17,7 +17,6 @@
 .jp-controls > div{
 	display: table-cell;
 	vertical-align: middle;
-	text-align: center;
 	width: 40px;
 	height: 60px;
 }

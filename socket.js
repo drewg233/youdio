@@ -42,22 +42,23 @@ io.sockets.on('connection', function (socket) {
 		io.sockets.in(socket.room).emit('deletefirst video');
 	});
 
-	socket.on('play videoserver', function(){
-		io.sockets.in(socket.room).emit('play video');
+	socket.on('play videoserver', function(username){
+		io.sockets.in(socket.room).emit('play video', username);
 	});
 
-	socket.on('pause videoserver', function(currentVideoTime){
+	socket.on('pause videoserver', function(username, currentVideoTime){
 		console.log("video time: " + currentVideoTime);
-		io.sockets.in(socket.room).emit('pause video', currentVideoTime);
+		io.sockets.in(socket.room).emit('pause video', username, currentVideoTime);
 	});
 
-	socket.on('add video', function(videoTitle, videoID){
+	socket.on('add video', function(username, video){
 		if (playlist[socket.room] === undefined) {
 			playlist[socket.room] = [];
 		}
-		playlist[socket.room].push(videoID);
+		// playlist[socket.room].push(videoID);
+		playlist[socket.room].push(video);
 		console.log("HERES THE PLAYLIST: " + playlist[socket.room])
-		io.sockets.in(socket.room).emit('updateplaylist', videoTitle, videoID, playlist[socket.room]);
+		io.sockets.in(socket.room).emit('updateplaylist', username, video, playlist[socket.room]);
 	});
 	
 	socket.on('sendchat', function (data) {

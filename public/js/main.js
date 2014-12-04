@@ -27,8 +27,9 @@
     player.stopVideo();
   }
 
-  var addVideoItem = function(videoTitle, videoId){
-    socket.emit('add video', videoTitle, videoId);
+  var addVideoItem = function(username, video){
+    // socket.emit('add video', videoTitle, videoId);
+    socket.emit('add video', username, video);
   };
 
   $('#searchvideoform').submit(function(e){
@@ -54,7 +55,6 @@
 
 function onPlayerReady(event) {
   if (localplaylist.length >= 1) {
-
   } else {
     $("#video").hide();
   }
@@ -80,13 +80,13 @@ function onPlayerStateChange(event) {
   }
   // playing
   if(event.data === 1) { 
-    socket.emit('play videoserver');
+    socket.emit('play videoserver', datanew.username);
     $("#bottomPlayButton").addClass( "hid" );
     $("#bottomPauseButton").removeClass( "hid" );  
   }
   // paused
   if(event.data === 2) {
-    socket.emit('pause videoserver', player.getCurrentTime());
+    socket.emit('pause videoserver', datanew.username, player.getCurrentTime());
     $("#bottomPlayButton").removeClass( "hid" );
     $("#bottomPauseButton").addClass( "hid" );
   }
