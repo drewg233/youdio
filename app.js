@@ -22,13 +22,10 @@ var initPassport = require('./passport/init');
 initPassport(passport);
 
 var mongoose = require('mongoose');
-//mongoose.connect('mongodb://drewg23:jesusman23@ds055690.mongolab.com:55690/youdio');
 mongoose.connect('mongodb://'+server_config.serverip+'/passport');
 
 // Youdio API Key
 youtube.setKey('AIzaSyBSpKkEoeOvoIKaYUkhcmz-uhDSj9yKHU8');
-// Localhost API Key
-// youtube.setKey('AIzaSyAXxQY6YmCQwhwMxYc35_7PqPqT2ZNVD1s');
 
 swig.setDefaults({ cache: false });
 app.engine('html', swig.renderFile);
