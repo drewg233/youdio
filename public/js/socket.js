@@ -68,8 +68,9 @@ socket.on('update results', function (data) {
 socket.on('updatechat', function (data) {
   // console.log("UPDATE CHAT DATA: "+data);
   if (data.profile_image != undefined){
+    console.log("The profile image: "+data.profile_image);
     $('section.chat-list').append('<article id="chat-id-1" class="chat-item left"><a href="#" class="pull-left thumb-sm avatar"><img src="'+ data.profile_image +'"></a><section class="chat-body"><div class="panel b-light text-sm m-b-none"><div class="panel-body"><span class="arrow left"></span><p class="m-b-none">'+data.message+'</p></div></div><small class="text-muted"></section></article>');
-     $('section.chat-list').animate({scrollTop: $('section.chat-list')[0].scrollHeight}, 400);
+    $('section.chat-list').animate({scrollTop: $('section.chat-list')[0].scrollHeight}, 400);
   } else {
     $('section.chat-list').append('<article id="chat-id-1" class="chat-item left"><a href="#" class="pull-left thumb-sm avatar"><img src="img/a2.png"></a><section class="chat-body"><div class="panel b-light text-sm m-b-none"><div class="panel-body"><span class="arrow left"></span><p class="m-b-none">'+data.message+'</p></div></div><small class="text-muted"></section></article>');
     $('section.chat-list').animate({scrollTop: $('section.chat-list')[0].scrollHeight}, 400);

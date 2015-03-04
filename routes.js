@@ -37,11 +37,8 @@ app.get('/logout', function(req, res) {
 
 app.get('/', function(req, res) {
     loadGlobalData(req, function (globalData) {
-        res.render('index', {
-            globalData: globalData,
-            title: 'My Chat',
-            chat_room: req.params[0]
-        });
+        var theroom = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+        res.redirect("/" + theroom);
     });
 });
 

@@ -44,9 +44,9 @@
                     <span class="help-block"></span>
                 </div>
                 <button type="submit" class="btn btn-success btn-block">Login</button>
+            </form>
                 <a href="/auth/google"><button type="submit" class="btn btn-danger btn-block">Login with Google</button></a>
                 <button type="submit" class="btn btn-primary btn-block">Signup</button>
-            </form>
           </div>
         </div>
       </div>
@@ -70,14 +70,7 @@
         <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".user">
           <i class="icon-settings"></i>
         </a>
-      </div>      <ul class="nav navbar-nav hidden-xs">
-        <li>
-          <a href="#nav,.navbar-header" data-toggle="class:nav-xs,nav-xs" class="text-muted">
-            <i class="fa fa-indent text"></i>
-            <i class="fa fa-dedent text-active"></i>
-          </a>
-        </li>
-      </ul>
+      </div> 
       <div class="navbar-right ">
         <ul class="nav navbar-nav m-n hidden-xs nav-user user">
           <li class="hidden-xs">
@@ -130,7 +123,7 @@
                 <a href="#">Settings</a>
               </li>
               <li>
-                <a href="profile.html">Profile</a>
+                <a href="#">Profile</a>
               </li>
               <li>
                 <a href="#">
@@ -139,7 +132,7 @@
                 </a>
               </li>
               <li>
-                <a href="docs.html">Help</a>
+                <a href="#">Help</a>
               </li>
               <li class="divider"></li>
               <li>
@@ -731,7 +724,11 @@
           var data = { message: message, username: '{{ globalData.user }}', room:'{{ chat_room }}', profile_image: '{{ globalData.userimage }}' };
           if (message.length != 0) {
             socket.emit('sendchat', data);
-            $('section.chat-list').append('<article id="chat-id-2" class="chat-item right"><a href="#" class="pull-right thumb-sm avatar"><img src="img/a3.png" class="img-circle"></a><section class="chat-body"><div class="panel bg-light text-sm m-b-none"><div class="panel-body"><span class="arrow right"></span><p class="m-b-none">'+data.message+'</div></div><small class="text-muted"></small></section></article>');
+            if (data.profile_image != undefined) {
+            $('section.chat-list').append('<article id="chat-id-2" class="chat-item right"><a href="#" class="pull-right thumb-sm avatar"><img src="'+data.profile_image+'" class="img-circle"></a><section class="chat-body"><div class="panel bg-light text-sm m-b-none"><div class="panel-body"><span class="arrow right"></span><p class="m-b-none">'+data.message+'</div></div><small class="text-muted"></small></section></article>');
+            } else {
+              $('section.chat-list').append('<article id="chat-id-2" class="chat-item right"><a href="#" class="pull-right thumb-sm avatar"><img src="img/a3.png" class="img-circle"></a><section class="chat-body"><div class="panel bg-light text-sm m-b-none"><div class="panel-body"><span class="arrow right"></span><p class="m-b-none">'+data.message+'</div></div><small class="text-muted"></small></section></article>');
+            }
             $('section.chat-list').animate({scrollTop: $('section.chat-list')[0].scrollHeight}, 400);
           }
         });
