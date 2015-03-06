@@ -80,7 +80,6 @@ io.sockets.on('connection', function (socket) {
 			updateUsers(socket.room);
 		}
 	});
-
 });
 
 function updateUsers(room) {
